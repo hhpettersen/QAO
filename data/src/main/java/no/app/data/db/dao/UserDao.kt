@@ -1,4 +1,3 @@
 package no.app.data.db.dao
 
-class UserDao {
-}
+class UserDao

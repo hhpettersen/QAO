@@ -10,7 +10,7 @@ interface ApiEndpoints {
     @GET("users")
     suspend fun getUsers(
         @Query("per_page") pageSize: Int,
-        @Query("since") since: Int,
+        @Query("since") since: Int
     ): Response<UserApiModelList>
 
     @GET("users/{username}")

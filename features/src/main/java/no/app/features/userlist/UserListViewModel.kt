@@ -10,13 +10,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val userRepository: UserRepository,
+    private val userRepository: UserRepository
 ) : ViewModel() {
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val result = userRepository.getAllUsers()
 
-            println("${result}")
+            println("$result")
         }
     }
 }

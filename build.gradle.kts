@@ -9,3 +9,18 @@ plugins {
     alias(libs.plugins.ksp) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block
+
+buildscript {
+    repositories {
+        maven {
+            url = uri("https://plugins.gradle.org/m2/")
+        }
+    }
+    dependencies {
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:11.5.1")
+    }
+}
+
+allprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
+}

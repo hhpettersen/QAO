@@ -6,7 +6,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun UserListScreen() {
-
     val viewModel = hiltViewModel<UserListViewModel>()
 
     Text(text = "User list screen")
