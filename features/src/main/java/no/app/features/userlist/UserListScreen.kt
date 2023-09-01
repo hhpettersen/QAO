@@ -19,8 +19,10 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
+import com.ramcosta.composedestinations.annotation.Destination
 import no.app.data.model.api.UserApiModel
 
+@Destination(start = true)
 @Composable
 fun UserListScreen() {
     val viewModel = hiltViewModel<UserListViewModel>()

@@ -20,6 +20,7 @@ ksp = "1.8.10-1.0.9"
 ktlint = "10.2.0"
 paging-compose = "3.2.0"
 coil = "2.4.0"
+destinations = "1.9.51"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -55,6 +56,9 @@ hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-com
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging-compose" }
 
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+
+destinations-core = { group = "io.github.raamcosta.compose-destinations", name = "core", version.ref = "destinations" }
+destinations-ksp = { group = "io.github.raamcosta.compose-destinations", name = "ksp", version.ref = "destinations" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
