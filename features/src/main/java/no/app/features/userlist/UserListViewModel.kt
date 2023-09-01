@@ -1,10 +1,12 @@
 package no.app.features.userlist
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.Flow
+import no.app.data.model.api.UserApiModel
 import no.app.data.repository.UserRepository
 import javax.inject.Inject
 
@@ -12,11 +14,12 @@ import javax.inject.Inject
 class UserListViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
-    init {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = userRepository.getAllUsers()
 
-            println("$result")
-        }
+    val users: Flow<PagingData<UserApiModel>> = Pager(PagingConfig(pageSize = PAGE_SIZE)) {
+        UserListLogSource(userRepository, PAGE_SIZE)
+    }.flow
+
+    companion object {
+        const val PAGE_SIZE = 30
     }
 }

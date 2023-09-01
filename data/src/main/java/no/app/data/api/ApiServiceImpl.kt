@@ -6,9 +6,9 @@ import no.app.data.utils.ApiResult
 
 class ApiServiceImpl(private val apiEndpoints: ApiEndpoints) : ApiService {
 
-    override suspend fun getAllUsers(): ApiResult<UserApiModelList> {
+    override suspend fun getAllUsers(perPage: Int, since: Int): ApiResult<UserApiModelList> {
         return try {
-            val response = apiEndpoints.getUsers(30, 0)
+            val response = apiEndpoints.getUsers(perPage, since)
             if (response.isSuccessful) {
                 response.body()?.let {
                     ApiResult.Success(it)

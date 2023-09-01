@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface ApiEndpoints {
     @GET("users")
     suspend fun getUsers(
-        @Query("per_page") pageSize: Int,
+        @Query("per_page") perPage: Int,
         @Query("since") since: Int
     ): Response<UserApiModelList>
 

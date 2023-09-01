@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(private val apiService: ApiService) : UserRepository {
 
-    override suspend fun getAllUsers(): ApiResult<UserApiModelList> {
-        return apiService.getAllUsers()
+    override suspend fun getAllUsers(perPage: Int, since: Int): ApiResult<UserApiModelList> {
+        return apiService.getAllUsers(perPage, since)
     }
 
     override suspend fun getUserByUsername(username: String): ApiResult<UserApiModel> {

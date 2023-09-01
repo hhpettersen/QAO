@@ -33,6 +33,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.material3)
     implementation(libs.paging.compose)
+    implementation(libs.coil)
 
     implementation(libs.ui.tooling.preview)
     testImplementation(libs.junit)
