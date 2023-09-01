@@ -25,7 +25,6 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import no.app.data.model.api.UserApiModel
 import no.app.features.destinations.UserDetailScreenDestination
 import no.app.features.userdetail.UserDetailNavArgs
-import no.app.features.userdetail.UserDetailScreen
 
 @Destination(start = true)
 @Composable
@@ -39,7 +38,7 @@ fun UserListScreen(
     UserListContent(
         users = users,
         onUserSelected = {
-            navigator.navigate(UserDetailScreenDestination(UserDetailNavArgs(it.id)))
+            navigator.navigate(UserDetailScreenDestination(UserDetailNavArgs(it.login)))
         }
     )
 }
