@@ -8,6 +8,8 @@ import no.app.data.api.ApiEndpoints
 import no.app.data.api.ApiService
 import no.app.data.api.ApiServiceImpl
 import no.app.data.api.RetrofitClientProvider
+import no.app.data.repository.UserRepository
+import no.app.data.repository.UserRepositoryImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -18,4 +20,7 @@ class DataModule {
 
     @Provides
     fun provideApiService(apiEndpoints: ApiEndpoints): ApiService = ApiServiceImpl(apiEndpoints)
+
+    @Provides
+    fun provideUserRepository(apiService: ApiService): UserRepository = UserRepositoryImpl(apiService)
 }

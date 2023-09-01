@@ -5,16 +5,16 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import no.app.data.api.ApiService
+import no.app.data.repository.UserRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val apiService: ApiService,
+    private val userRepository: UserRepository,
 ) : ViewModel() {
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            val result = apiService.getAllUsers()
+            val result = userRepository.getAllUsers()
 
             println("${result}")
         }
