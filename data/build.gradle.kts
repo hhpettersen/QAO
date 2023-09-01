@@ -41,4 +41,12 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.adapters)
+
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.moshi)
+
+    implementation(libs.okhttp3.logging)
 }
