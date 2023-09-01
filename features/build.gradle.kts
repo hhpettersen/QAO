@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.com.google.dagger.hilt.android)
 }
 
 android {
@@ -25,6 +27,8 @@ android {
 }
 
 dependencies {
+    implementation(project(mapOf("path" to ":data")))
+
     implementation(platform(libs.compose.bom))
     implementation(libs.activity.compose)
     implementation(libs.material3)
@@ -36,4 +40,9 @@ dependencies {
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.tooling)
+
+    // Dependency Injection - Hilt
+    implementation(libs.dagger.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.dagger.hilt.android.compiler)
 }
