@@ -1,5 +1,6 @@
 package no.app.features.userlist
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,21 +21,33 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import no.app.data.model.api.UserApiModel
+import no.app.features.destinations.UserDetailScreenDestination
+import no.app.features.userdetail.UserDetailNavArgs
+import no.app.features.userdetail.UserDetailScreen
 
 @Destination(start = true)
 @Composable
-fun UserListScreen() {
+fun UserListScreen(
+    navigator: DestinationsNavigator,
+) {
     val viewModel = hiltViewModel<UserListViewModel>()
 
     val users = viewModel.users.collectAsLazyPagingItems()
 
-    UserListContent(users)
+    UserListContent(
+        users = users,
+        onUserSelected = {
+            navigator.navigate(UserDetailScreenDestination(UserDetailNavArgs(it.id)))
+        }
+    )
 }
 
 @Composable
 fun UserListContent(
     users: LazyPagingItems<UserApiModel>,
+    onUserSelected: (UserApiModel) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(4),
@@ -42,7 +55,12 @@ fun UserListContent(
         contentPadding = PaddingValues(vertical = 16.dp),
     ) {
         items(count = users.itemCount, key = users.itemKey { it.id }) { index ->
-            users[index]?.let { UserListItem(it) }
+            users[index]?.let { user ->
+                UserListItem(
+                    user = user,
+                    onUserSelected = onUserSelected
+                )
+            }
         }
     }
 }
@@ -50,10 +68,12 @@ fun UserListContent(
 @Composable
 fun UserListItem(
     user: UserApiModel,
+    onUserSelected: (UserApiModel) -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable { onUserSelected(user) }
     ) {
         AsyncImage(
             modifier = Modifier

@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
-import no.app.features.userlist.NavGraphs
+import no.app.features.NavGraphs
 import no.app.qao.ui.theme.QAOTheme
 
 @AndroidEntryPoint
