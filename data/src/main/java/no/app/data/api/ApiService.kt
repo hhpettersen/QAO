@@ -2,29 +2,37 @@ package no.app.data.api
 
 import no.app.data.model.api.UserApiModel
 import no.app.data.model.api.UserApiModelList
+import no.app.data.utils.ApiResult
 
 class ApiService(private val apiEndpoints: ApiEndpoints) {
 
-    suspend fun getAllUsers(): Result<UserApiModelList> {
-
-        val response = apiEndpoints.getUsers(30, 0)
-
-        return if (response.isSuccessful) {
-            Result.success(response.body() ?: emptyList())
-        } else {
-            Result.failure(Exception("Failed to get users"))
+    suspend fun getAllUsers(): ApiResult<UserApiModelList> {
+        return try {
+            val response = apiEndpoints.getUsers(30, 0)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(Exception("Response body was null"))
+            } else {
+                ApiResult.Error(Exception("Failed to get users, HTTP code: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            ApiResult.Error(e)
         }
     }
 
-    suspend fun getUserByUsername(username: String): Result<UserApiModel> {
-        val response = apiEndpoints.getUserByUsername(username)
-
-        return if (response.isSuccessful) {
-            response.body()?.let { user ->
-                Result.success(user)
-            } ?: Result.failure(Exception("Failed to get user, response body was null"))
-        } else {
-            Result.failure(Exception("Failed to get user, response code: ${response.code()}"))
+    suspend fun getUserByUsername(username: String): ApiResult<UserApiModel> {
+        return try {
+            val response = apiEndpoints.getUserByUsername(username)
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    ApiResult.Success(it)
+                } ?: ApiResult.Error(Exception("Response body was null"))
+            } else {
+                ApiResult.Error(Exception("Failed to get user, HTTP code: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            ApiResult.Error(e)
         }
     }
 }
