@@ -51,8 +51,8 @@ android {
 }
 
 dependencies {
-
-    implementation(project(mapOf("path" to ":features:login")))
+    implementation(project(mapOf("path" to ":data")))
+    implementation(project(mapOf("path" to ":features")))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)

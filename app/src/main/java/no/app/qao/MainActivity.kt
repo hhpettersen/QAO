@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import no.app.login.LoginScreen
 import no.app.qao.ui.theme.QAOTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,8 +25,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column {
-                        LoginScreen()
-                        Greeting("Android")
                     }
                 }
             }

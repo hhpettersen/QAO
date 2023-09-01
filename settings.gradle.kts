@@ -15,9 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "QAO"
 include(":app")
+include(":data")
 include(":features")
-include(":lib")
-include(":features:login")
-include(":userlist")
-include(":userdetails")
-include(":login")
