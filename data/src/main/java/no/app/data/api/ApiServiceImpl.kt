@@ -1,7 +1,7 @@
 package no.app.data.api
 
-import no.app.data.model.api.UserApiModel
 import no.app.data.model.api.UserApiModelList
+import no.app.data.model.api.UserDetailApiModel
 import no.app.data.utils.ApiResult
 
 class ApiServiceImpl(private val apiEndpoints: ApiEndpoints) : ApiService {
@@ -21,7 +21,7 @@ class ApiServiceImpl(private val apiEndpoints: ApiEndpoints) : ApiService {
         }
     }
 
-    override suspend fun getUserByUsername(username: String): ApiResult<UserApiModel> {
+    override suspend fun getUserByUsername(username: String): ApiResult<UserDetailApiModel> {
         return try {
             val response = apiEndpoints.getUserByUsername(username)
             if (response.isSuccessful) {
