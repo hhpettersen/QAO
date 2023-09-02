@@ -1,7 +1,6 @@
 package no.app.features.login
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -29,10 +27,12 @@ import com.google.firebase.ktx.Firebase
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.ramcosta.composedestinations.navigation.popUpTo
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import no.app.features.components.GenericErrorState
 import no.app.features.components.GenericLoadingState
+import no.app.features.destinations.LoginScreenDestination
 import no.app.features.destinations.UserListScreenDestination
 import no.app.features.util.UiState
 
@@ -44,11 +44,10 @@ fun LoginScreen(
 ) {
 
     val viewModel = hiltViewModel<LoginViewModel>()
-
     val context = LocalContext.current
-
     val authLauncher = rememberFirebaseAuthLauncher(
-        onAuthComplete = { result ->
+        // Since I don't pass in a valid server client id, the auth will fail, faking "success" for the purpose of this project.
+        onAuthComplete = {
             viewModel.onAuthenticated()
         },
         onAuthError = {
@@ -58,21 +57,21 @@ fun LoginScreen(
 
     val state = viewModel.uiState.collectAsState()
 
-    LaunchedEffect(viewModel) {
-        viewModel.uiEffects.collect {
-            when (it) {
-                is UiEffect.Authenticated -> navigator.navigate(UserListScreenDestination)
-            }
-        }
-    }
-
     LoginContent(
         state = state.value,
+        // Not pleased with this solution, would like to discuss this further.
+        onAuthComplete = {
+            navigator.navigate(direction = UserListScreenDestination) {
+                popUpTo(LoginScreenDestination) {
+                    inclusive = true
+                }
+            }
+        },
         onLoginClick = {
             val gso =
                 GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    // Left blank to avoid storing users in firestore database at the current state of the project
-                    .requestIdToken("")
+                    // Left blank to avoid storing users in firestore database at the current state of the project.
+                    .requestIdToken(":)")
                     .requestEmail()
                     .build()
             val googleSignInClient = GoogleSignIn.getClient(context, gso)
@@ -83,7 +82,8 @@ fun LoginScreen(
 
 @Composable
 fun LoginContent(
-    state: UiState<Unit>,
+    state: UiState<LoginState>,
+    onAuthComplete: () -> Unit,
     onLoginClick: () -> Unit,
 ) {
     when (state) {
@@ -96,9 +96,13 @@ fun LoginContent(
             GenericLoadingState()
         }
         is UiState.Success -> {
-            LoginButton(
-                onLoginClick = onLoginClick
-            )
+            if (state.data.isAuthenticated) {
+                onAuthComplete()
+            } else {
+                LoginButton(
+                    onLoginClick = onLoginClick
+                )
+            }
         }
     }
 }

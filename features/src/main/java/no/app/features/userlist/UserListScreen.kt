@@ -32,7 +32,6 @@ fun UserListScreen(
     navigator: DestinationsNavigator,
 ) {
     val viewModel = hiltViewModel<UserListViewModel>()
-
     val users = viewModel.users.collectAsLazyPagingItems()
 
     UserListContent(

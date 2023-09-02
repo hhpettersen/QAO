@@ -1,36 +1,26 @@
 package no.app.features.login
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.launch
+import no.app.data.store.KeyStore
 import no.app.features.util.UiState
+import java.util.UUID
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
+    private val keyStore: KeyStore,
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow<UiState<Unit>>(UiState.Loading)
-    val uiState: StateFlow<UiState<Unit>> = _uiState
-
-    private val _uiEffects = MutableSharedFlow<UiEffect>(extraBufferCapacity = 100)
-    val uiEffects: Flow<UiEffect> get() = _uiEffects.asSharedFlow()
+    private val _uiState = MutableStateFlow<UiState<LoginState>>(UiState.Loading)
+    val uiState: StateFlow<UiState<LoginState>> = _uiState
 
     init {
-        val auth: FirebaseAuth = FirebaseAuth.getInstance()
-        val currentUser: FirebaseUser? = auth.currentUser
-
-        if (currentUser != null) {
-            emitUiEffect(UiEffect.Authenticated)
+        if (keyStore.getLoginSession() != null) {
+            _uiState.value = UiState.Success(LoginState(isAuthenticated = true))
         } else {
-            _uiState.value = UiState.Success(Unit)
+            _uiState.value = UiState.Success(LoginState(isAuthenticated = false))
         }
     }
 
@@ -39,16 +29,11 @@ class LoginViewModel @Inject constructor(
     }
 
     fun onAuthenticated() {
-        emitUiEffect(UiEffect.Authenticated)
-    }
-
-    private fun emitUiEffect(uiEffect: UiEffect) {
-        viewModelScope.launch {
-            _uiEffects.emit(uiEffect)
-        }
+        keyStore.saveLoginSession(UUID.randomUUID().toString())
+        _uiState.value = UiState.Success(LoginState(isAuthenticated = true))
     }
 }
 
-sealed class UiEffect {
-    object Authenticated : UiEffect()
-}
+data class LoginState(
+    val isAuthenticated: Boolean = false,
+)
