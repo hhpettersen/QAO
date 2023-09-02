@@ -21,12 +21,14 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
 import coil.compose.AsyncImage
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import no.app.data.model.api.UserApiModel
 import no.app.features.destinations.UserDetailScreenDestination
 import no.app.features.userdetail.UserDetailNavArgs
 
-@Destination(start = true)
+@RootNavGraph(start = true)
+@Destination
 @Composable
 fun UserListScreen(
     navigator: DestinationsNavigator,
