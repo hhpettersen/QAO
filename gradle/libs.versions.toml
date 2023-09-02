@@ -26,6 +26,8 @@ firebase-bom = "32.2.0"
 google-services = "4.3.15"
 play-services-auth = "20.6.0"
 room = "2.5.2"
+turbine = "1.0.0"
+coroutines-test = "1.7.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -76,6 +78,9 @@ google-services = { group = "com.google.gms", name = "google-services", version.
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+
+couroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }

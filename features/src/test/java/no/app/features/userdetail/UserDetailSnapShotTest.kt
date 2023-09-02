@@ -1,4 +1,4 @@
-package no.app.features
+package no.app.features.userdetail
 
 import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
