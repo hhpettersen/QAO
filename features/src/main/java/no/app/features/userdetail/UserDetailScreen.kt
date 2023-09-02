@@ -92,8 +92,8 @@ fun UserDetailSuccessState(
                         .clip(CircleShape)
                         .weight(0.5f),
                     model = user.avatarUrl,
-                    placeholder = painterResource(id = R.drawable.frlif),
-                    error = painterResource(id = R.drawable.frlif),
+                    placeholder = painterResource(id = R.drawable.avatar_placeholder),
+                    error = painterResource(id = R.drawable.avatar_placeholder),
                     contentDescription = "Avatar",
                     contentScale = ContentScale.FillWidth,
                 )

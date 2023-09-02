@@ -5,9 +5,12 @@ import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +19,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -30,6 +36,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.navigation.popUpTo
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import no.app.features.R
 import no.app.features.components.GenericErrorState
 import no.app.features.components.GenericLoadingState
 import no.app.features.destinations.LoginScreenDestination
@@ -117,10 +124,25 @@ fun LoginButton(
             Button(
                 onClick = { onLoginClick() }
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.google_icon),
+                    contentDescription = "Google icon",
+                )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text("Sign in via Google")
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewLoginContent() {
+    LoginContent(
+        state = UiState.Success(LoginState(false)),
+        onAuthComplete = { /*TODO*/ },
+        onLoginClick = { /*TODO*/ }
+    )
 }
 
 @Composable

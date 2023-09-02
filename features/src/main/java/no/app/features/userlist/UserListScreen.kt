@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
@@ -23,6 +24,7 @@ import coil.compose.AsyncImage
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import no.app.data.model.api.UserApiModel
+import no.app.features.R
 import no.app.features.destinations.UserDetailScreenDestination
 import no.app.features.userdetail.UserDetailNavArgs
 import no.app.features.util.AnimationTransitions
@@ -81,6 +83,8 @@ fun UserListItem(
             model = user.avatarUrl,
             contentDescription = "Avatar",
             contentScale = ContentScale.FillWidth,
+            placeholder = painterResource(id = R.drawable.avatar_placeholder),
+            error = painterResource(id = R.drawable.avatar_placeholder)
         )
         Text(text = user.login)
     }
