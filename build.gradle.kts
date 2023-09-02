@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.com.google.dagger.hilt.android) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.paparazzi) apply false
-    alias(libs.plugins.google.services) apply false
 }
 
 buildscript {
@@ -19,6 +18,7 @@ buildscript {
     }
     dependencies {
         classpath("org.jlleitschuh.gradle:ktlint-gradle:11.5.1")
+        classpath(libs.google.services)
     }
 }
 

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.com.google.dagger.hilt.android)
     alias(libs.plugins.paparazzi)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -52,5 +53,12 @@ dependencies {
     implementation(libs.destinations.core)
     ksp(libs.destinations.ksp)
 
-    implementation(libs.paparazzi.gradle.plugin)
+    implementation(libs.paparazzi.gradle.plugin) {
+        isTransitive = false
+    }
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
 }
