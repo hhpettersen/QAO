@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.com.google.dagger.hilt.android) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.paparazzi) apply false
+    alias(libs.plugins.google.services) apply false
 }
 
 buildscript {

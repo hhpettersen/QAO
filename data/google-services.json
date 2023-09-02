@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "609169914571",
+    "project_id": "qao-app-d495e",
+    "storage_bucket": "qao-app-d495e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609169914571:android:1e2741a85a6e1f7d90f94e",
+        "android_client_info": {
+          "package_name": "no.qao.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609169914571-07djgk838ndaulqfqgarbs84lv1q8n35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "no.qao.app",
+            "certificate_hash": "04a9073a4b3a1effe14a6beb6e214f613bfd7e16"
+          }
+        },
+        {
+          "client_id": "609169914571-h8815a4grsufjum049dri2379rhvv5nc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiMrzKmX9hG4ZEdB5czxfQvkXc_KpxAdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609169914571-h8815a4grsufjum049dri2379rhvv5nc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
