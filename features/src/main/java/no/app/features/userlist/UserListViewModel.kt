@@ -20,6 +20,6 @@ class UserListViewModel @Inject constructor(
     }.flow
 
     companion object {
-        const val PAGE_SIZE = 30
+        const val PAGE_SIZE = 90
     }
 }
