@@ -25,8 +25,9 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import no.app.data.model.api.UserApiModel
 import no.app.features.destinations.UserDetailScreenDestination
 import no.app.features.userdetail.UserDetailNavArgs
+import no.app.features.util.AnimationTransitions
 
-@Destination
+@Destination(style = AnimationTransitions::class)
 @Composable
 fun UserListScreen(
     navigator: DestinationsNavigator,

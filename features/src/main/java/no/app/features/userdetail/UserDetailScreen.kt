@@ -33,13 +33,14 @@ import no.app.features.R
 import no.app.features.components.GenericErrorState
 import no.app.features.components.GenericLoadingState
 import no.app.features.components.LabeledText
+import no.app.features.util.AnimationTransitions
 import no.app.features.util.UiState
 
 data class UserDetailNavArgs(
     val username: String,
 )
 
-@Destination(navArgsDelegate = UserDetailNavArgs::class)
+@Destination(navArgsDelegate = UserDetailNavArgs::class, style = AnimationTransitions::class)
 @Composable
 fun UserDetailScreen() {
     val viewModel = hiltViewModel<UserDetailViewModel>()

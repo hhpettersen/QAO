@@ -34,10 +34,11 @@ import no.app.features.components.GenericErrorState
 import no.app.features.components.GenericLoadingState
 import no.app.features.destinations.LoginScreenDestination
 import no.app.features.destinations.UserListScreenDestination
+import no.app.features.util.AnimationTransitions
 import no.app.features.util.UiState
 
 @RootNavGraph(start = true)
-@Destination
+@Destination(style = AnimationTransitions::class)
 @Composable
 fun LoginScreen(
     navigator: DestinationsNavigator,
