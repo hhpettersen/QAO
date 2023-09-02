@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -86,20 +87,27 @@ fun UserDetailSuccessState(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 AsyncImage(
-                    modifier = Modifier.clip(CircleShape),
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .weight(0.5f),
                     model = user.avatarUrl,
                     placeholder = painterResource(id = R.drawable.frlif),
+                    error = painterResource(id = R.drawable.frlif),
                     contentDescription = "Avatar",
                     contentScale = ContentScale.FillWidth,
                 )
-                Column {
+                Column(
+                    modifier = Modifier.weight(0.5f)
+                ) {
                     Text(
+                        modifier = Modifier.testTag("Name"),
                         text = user.name ?: "Anonymous",
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
                         style = MaterialTheme.typography.bodyLarge,
                     )
                     Text(
+                        modifier = Modifier.testTag("Login"),
                         text = user.login,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1,
