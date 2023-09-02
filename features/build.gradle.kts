@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.com.google.dagger.hilt.android)
+    alias(libs.plugins.paparazzi)
 }
 
 android {
@@ -22,7 +23,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
 }
 
@@ -50,4 +51,6 @@ dependencies {
 
     implementation(libs.destinations.core)
     ksp(libs.destinations.ksp)
+
+    implementation(libs.paparazzi.gradle.plugin)
 }
