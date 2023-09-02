@@ -3,6 +3,7 @@ package no.app.data.api
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.EnumJsonAdapter
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import no.app.data.BuildConfig
 import no.app.data.model.api.UserType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,7 +25,7 @@ object RetrofitClientProvider {
         .build()
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(httpClient)
         .build()

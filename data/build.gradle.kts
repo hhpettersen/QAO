@@ -10,6 +10,13 @@ android {
     namespace = "no.app.data"
     compileSdk = 33
 
+    buildFeatures.buildConfig = true
+
+    defaultConfig {
+        // Move implementation to product-flavours if there is need to switch url for different builds.
+        buildConfigField("String", "BASE_URL", "\"https://api.github.com/\"")
+    }
+
     defaultConfig {
         minSdk = 26
 
