@@ -43,20 +43,21 @@ android {
 }
 
 dependencies {
-
+    // Android & Jetpack Libraries
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+
+    // Testing Libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Networking & Serialization
     implementation(libs.moshi.kotlin)
     implementation(libs.moshi.adapters)
-
     implementation(libs.retrofit)
     implementation(libs.retrofit.moshi)
-
     implementation(libs.okhttp3.logging)
 
     // Dependency Injection - Hilt
@@ -64,6 +65,7 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.dagger.hilt.android.compiler)
 
+    // Local Database - Room
     implementation(libs.room.runtime)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)

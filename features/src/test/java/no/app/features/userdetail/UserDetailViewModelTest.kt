@@ -1,6 +1,5 @@
 package no.app.features.userdetail
 
-
 import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import junit.framework.TestCase.assertEquals

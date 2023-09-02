@@ -53,17 +53,23 @@ android {
 }
 
 dependencies {
+    // Project Modules
     implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":features")))
 
+    // Android & Jetpack Libraries
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.activity.compose)
+
+    // Compose UI
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+
+    // Testing Libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -77,6 +83,7 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.dagger.hilt.android.compiler)
 
+    // Navigation - Destinations
     implementation(libs.destinations.core)
     ksp(libs.destinations.ksp)
 }

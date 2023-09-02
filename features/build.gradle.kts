@@ -29,14 +29,18 @@ android {
 }
 
 dependencies {
+    // Project Modules
     implementation(project(mapOf("path" to ":data")))
 
+    // Compose & UI Libraries
     implementation(platform(libs.compose.bom))
     implementation(libs.activity.compose)
     implementation(libs.material3)
     implementation(libs.paging.compose)
     implementation(libs.coil)
     implementation(libs.ui.tooling.preview)
+
+    // Testing Libraries
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -50,18 +54,21 @@ dependencies {
     implementation(libs.hilt.navigation.compose)
     ksp(libs.dagger.hilt.android.compiler)
 
+    // Navigation & Destinations
     implementation(libs.destinations.core)
     ksp(libs.destinations.ksp)
 
+    // UI Testing - Paparazzi
     implementation(libs.paparazzi.gradle.plugin) {
         isTransitive = false
     }
 
-    // Firebase
+    // Firebase Libraries
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.play.services.auth)
 
+    // Coroutine Testing Libraries
     testImplementation(libs.turbine)
     testImplementation(libs.couroutines.test)
 }

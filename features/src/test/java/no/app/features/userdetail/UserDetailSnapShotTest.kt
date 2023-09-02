@@ -4,7 +4,6 @@ import app.cash.paparazzi.DeviceConfig
 import app.cash.paparazzi.Paparazzi
 import no.app.data.model.api.UserDetailApiModel
 import no.app.data.model.api.UserType
-import no.app.features.userdetail.UserDetailContent
 import no.app.features.util.UiState
 import org.junit.Rule
 import org.junit.Test
