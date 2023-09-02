@@ -27,8 +27,8 @@ class DataModule {
     fun provideApiService(apiEndpoints: ApiEndpoints): ApiService = ApiServiceImpl(apiEndpoints)
 
     @Provides
-    fun provideUserRepository(apiService: ApiService): UserRepository =
-        UserRepositoryImpl(apiService)
+    fun provideUserRepository(apiService: ApiService, database: AppDatabase): UserRepository =
+        UserRepositoryImpl(apiService, database)
 
     @Provides
     fun provideKeyStore(@ApplicationContext context: Context): KeyStore = KeyStore(context)

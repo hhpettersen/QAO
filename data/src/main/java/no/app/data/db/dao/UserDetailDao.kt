@@ -11,6 +11,6 @@ interface UserDetailDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: UserDetailEntity)
 
-    @Query("SELECT * FROM user_detail WHERE id = :id")
-    suspend fun getUserById(id: String): UserDetailEntity
+    @Query("SELECT * FROM user_detail WHERE login = :login")
+    suspend fun getUserByUsername(login: String): UserDetailEntity?
 }
