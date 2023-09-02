@@ -17,7 +17,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath("org.jlleitschuh.gradle:ktlint-gradle:11.5.1")
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:10.2.0")
         classpath(libs.google.services)
     }
 }

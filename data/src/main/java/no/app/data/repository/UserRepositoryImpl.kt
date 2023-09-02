@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    private val database: AppDatabase,
+    private val database: AppDatabase
 ) : UserRepository {
 
     override suspend fun getAllUsers(perPage: Int, since: Int): ApiResult<UserApiModelList> {

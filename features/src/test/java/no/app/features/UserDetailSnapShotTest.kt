@@ -9,10 +9,10 @@ import no.app.features.util.UiState
 import org.junit.Rule
 import org.junit.Test
 
-class TestPap {
+class UserDetailSnapShotTest {
     @get:Rule
     val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.PIXEL_5,
+        deviceConfig = DeviceConfig.PIXEL_5
     )
 
     @Test

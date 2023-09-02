@@ -11,7 +11,7 @@ fun UserDetailEntity.toApiModel() = UserDetailApiModel(
     name = name,
     company = company,
     location = location,
-    email = email,
+    email = email
 )
 
 fun UserDetailApiModel.toEntity() = UserDetailEntity(
@@ -22,5 +22,5 @@ fun UserDetailApiModel.toEntity() = UserDetailEntity(
     name = name,
     company = company,
     location = location,
-    email = email,
+    email = email
 )

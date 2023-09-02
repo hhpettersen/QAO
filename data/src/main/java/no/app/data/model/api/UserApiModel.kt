@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 data class UserApiModel(
     val login: String,
     val id: Int,
-    @Json(name = "avatar_url") val avatarUrl: String,
+    @Json(name = "avatar_url") val avatarUrl: String
 )
 
 typealias UserApiModelList = List<UserApiModel>

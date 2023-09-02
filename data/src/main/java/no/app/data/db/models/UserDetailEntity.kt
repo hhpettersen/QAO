@@ -15,7 +15,7 @@ data class UserDetailEntity(
     val name: String?,
     val company: String?,
     val location: String?,
-    val email: String?,
+    val email: String?
 )
 
 object UserTypeConverters {
